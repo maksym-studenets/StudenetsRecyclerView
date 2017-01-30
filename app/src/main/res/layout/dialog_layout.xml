@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <TextView
+        android:id="@+id/dialogNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dialogNameEdit"
+        app:layout_constraintTop_toTopOf="@+id/dialogNameEdit"/>
+
+    <EditText
+        android:id="@+id/dialogNameEdit"
+        android:layout_width="214dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteY="3dp"
+        app:layout_constraintLeft_toRightOf="@+id/dialogNameText"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"/>
+
+    <TextView
+        android:id="@+id/dialogCountryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Country"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="42dp"
+        app:layout_constraintTop_toBottomOf="@+id/dialogNameText"
+        android:layout_marginStart="8dp"/>
+
+    <EditText
+        android:id="@+id/dialogCountryEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/dialogCountryText"
+        app:layout_constraintTop_toTopOf="@+id/dialogCountryText"
+        app:layout_constraintVertical_bias="0.52"
+        app:layout_constraintLeft_toLeftOf="@+id/dialogNameEdit"/>
+
+    <TextView
+        android:id="@+id/dialogPriceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="42dp"
+        app:layout_constraintTop_toBottomOf="@+id/dialogCountryText"
+        android:layout_marginStart="8dp"/>
+
+    <EditText
+        android:id="@+id/dialogPriceEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/dialogPriceText"
+        app:layout_constraintTop_toTopOf="@+id/dialogPriceText"
+        app:layout_constraintVertical_bias="0.6"
+        app:layout_constraintLeft_toLeftOf="@+id/dialogCountryEdit"/>
+</android.support.constraint.ConstraintLayout>

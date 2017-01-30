@@ -1,0 +1,59 @@
+{
+  "fruit" : [
+    {
+      "name" : "Apple",
+      "country" : "Ukraine",
+      "price" : 12.5
+    },
+    {
+      "name" : "Orange",
+      "country" : "Spain",
+      "price" : 29.2
+    },
+    {
+      "name" : "Cherry",
+      "country" : "Ukraine",
+      "price" : 38.7
+    },
+    {
+      "name" : "Mandarine",
+      "country" : "Turkey",
+      "price" : 30
+    },
+    {
+      "name" : "Banana",
+      "country" : "Ecuador",
+      "price" : 23.3
+    },
+    {
+      "name" : "Strawberry",
+      "country" : "Poland",
+      "price" : 47
+    },
+    {
+      "name" : "Raspberry",
+      "country" : "Ukraine",
+      "price" : 35.4
+    },
+    {
+      "name" : "Currant",
+      "country" : "Ukraine",
+      "price" : 31.9
+    },
+    {
+      "name" : "Kiwi",
+      "country" : "Australia",
+      "price" : 29.9
+    },
+    {
+      "name" : "Pear",
+      "country" : "Ukraine",
+      "price" : 18.25
+    },
+    {
+      "name" : "Plum",
+      "country" : "Ukraine",
+      "price" : 20
+    }
+  ]
+}
