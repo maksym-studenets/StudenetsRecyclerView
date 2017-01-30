@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
     private AlertDialog.Builder alertDialog;
     private View view;
     private EditText fruitNameEdit, fruitCountryEdit, fruitPriceEdit;
-    private JsonManager manager = new JsonManager(getApplicationContext());
+
     private int editPosition;
     private boolean add = false;
 
@@ -51,19 +51,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        JsonManager manager = new JsonManager(getApplicationContext());
+
         manager.parseJson(manager.getJsonRead());
         fruitList = manager.getFruitList();
 
-        fruitNameEdit = (EditText) findViewById(R.id.dialogNameEdit);
-        fruitCountryEdit = (EditText) findViewById(R.id.dialogCountryEdit);
-        fruitPriceEdit = (EditText) findViewById(R.id.dialogPriceEdit);
+
 
         initializeRecyclerView();
         initializeDialog();
         initializeSwipeAction();
     }
+    // TODO: Save changes to JSON file on activity destroy
     /*
-
     protected void onDestroy() {
         super.onDestroy();
         manager.updateJson();
@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                removeItem(position);
 
                 if (direction == ItemTouchHelper.LEFT) {
                     removeItem(position);
@@ -106,6 +105,9 @@ public class MainActivity extends AppCompatActivity
                     removeView();
                     editPosition = position;
                     alertDialog.setTitle("Edit fruit");
+                    fruitNameEdit.setText(fruitList.get(editPosition).getName());
+                    fruitCountryEdit.setText(fruitList.get(editPosition).getCountry());
+                    fruitPriceEdit.setText(String.valueOf(fruitList.get(editPosition).getPrice()));
                     alertDialog.show();
                 }
             }
@@ -116,30 +118,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void removeView() {
-        if (view.getParent() != null) {
+        if (view.getParent() != null)
             ((ViewGroup) view.getParent()).removeView(view);
-        }
-    }
-
-    private ItemTouchHelper.SimpleCallback createHelperCallback() {
-        ItemTouchHelper.SimpleCallback simpleCallback =
-                new ItemTouchHelper.SimpleCallback(0,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-                    @Override
-                    public boolean onMove(RecyclerView recyclerView,
-                                          RecyclerView.ViewHolder viewHolder,
-                                          RecyclerView.ViewHolder target) {
-                        Toast.makeText(MainActivity.this, "Moved", Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-
-                    @Override
-                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                        Toast.makeText(MainActivity.this, "Moved", Toast.LENGTH_SHORT).show();
-                        removeItem(viewHolder.getAdapterPosition());
-                    }
-                };
-        return simpleCallback;
     }
 
     public void removeItem(int position) {
@@ -156,19 +136,17 @@ public class MainActivity extends AppCompatActivity
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                String name = fruitNameEdit.getText().toString();
+                String country = fruitCountryEdit.getText().toString();
+                double price = Double.parseDouble(fruitPriceEdit.getText().toString());
+
                 if (add) {
                     add = false;
-                    adapter.addItem(fruitNameEdit.getText().toString(), fruitCountryEdit.getText().toString(),
-                            Double.parseDouble(fruitPriceEdit.getText().toString()));
+                    adapter.addItem(name, country, price);
                     dialogInterface.dismiss();
                 }
                 else {
-                    String fruitName = fruitNameEdit.getText().toString();
-                    String countryName = fruitCountryEdit.getText().toString();
-                    double fruitPrice = Double.parseDouble(fruitPriceEdit.getText().toString());
-
-                    fruitList.set(editPosition, new Fruit(fruitName, countryName, fruitPrice));
-                    fruitList.set(editPosition, new Fruit(fruitName, countryName, fruitPrice));
+                    fruitList.set(editPosition, new Fruit(name, country, price));
                     adapter.notifyDataSetChanged();
                     dialogInterface.dismiss();
 
@@ -182,7 +160,6 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-
         fruitNameEdit = (EditText) view.findViewById(R.id.dialogNameEdit);
         fruitCountryEdit = (EditText) view.findViewById(R.id.dialogCountryEdit);
         fruitPriceEdit = (EditText) view.findViewById(R.id.dialogPriceEdit);
